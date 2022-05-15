@@ -82,7 +82,7 @@ public class SpringRpcReferencePostProcessor implements ApplicationContextAware,
             BeanDefinitionBuilder builder = BeanDefinitionBuilder.
                     genericBeanDefinition(SpringRpcReferenceBean.class);
             builder.setInitMethodName("init");
-            builder.addPropertyValue("interfaceCls", field.getType());
+            builder.addPropertyValue("interfaceClass", field.getType());
             builder.addPropertyValue("serviceAddress", rpcClientProperties.getServiceAddress());
             builder.addPropertyValue("servicePort", rpcClientProperties.getServicePort());
 

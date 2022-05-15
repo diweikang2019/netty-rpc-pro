@@ -13,11 +13,11 @@ public class SpringRpcReferenceBean implements FactoryBean<Object> {
     private Object object;
     private String serviceAddress;
     private int servicePort;
-    private Class<?> interfaceCls;
+    private Class<?> interfaceClass;
 
     public void init() {
-        this.object = Proxy.newProxyInstance(interfaceCls.getClassLoader(),
-                new Class<?>[]{interfaceCls}, new RpcInvokerProxy(serviceAddress, servicePort));
+        this.object = Proxy.newProxyInstance(interfaceClass.getClassLoader(),
+                new Class<?>[]{interfaceClass}, new RpcInvokerProxy(serviceAddress, servicePort));
     }
 
     @Override
@@ -27,7 +27,7 @@ public class SpringRpcReferenceBean implements FactoryBean<Object> {
 
     @Override
     public Class<?> getObjectType() {
-        return this.interfaceCls;
+        return this.interfaceClass;
     }
 
     public void setServiceAddress(String serviceAddress) {
@@ -38,7 +38,7 @@ public class SpringRpcReferenceBean implements FactoryBean<Object> {
         this.servicePort = servicePort;
     }
 
-    public void setInterfaceCls(Class<?> interfaceCls) {
-        this.interfaceCls = interfaceCls;
+    public void setInterfaceClass(Class<?> interfaceClass) {
+        this.interfaceClass = interfaceClass;
     }
 }
