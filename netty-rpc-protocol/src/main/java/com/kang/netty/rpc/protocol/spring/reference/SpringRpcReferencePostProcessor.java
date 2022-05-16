@@ -57,14 +57,15 @@ public class SpringRpcReferencePostProcessor implements ApplicationContextAware,
      */
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        for (String beanDefinitionname : beanFactory.getBeanDefinitionNames()) {
-            BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanDefinitionname);
+        for (String beanDefinitionName : beanFactory.getBeanDefinitionNames()) {
+            BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanDefinitionName);
             String beanClassName = beanDefinition.getBeanClassName();
             if (beanClassName != null) {
                 Class<?> clazz = ClassUtils.resolveClassName(beanClassName, this.classLoader);
                 ReflectionUtils.doWithFields(clazz, this::parseRpcReference);
             }
         }
+
         BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
         this.rpcRefBeanDefinition.forEach((beanName, beanDefinition) -> {
             if (context.containsBean(beanName)) {

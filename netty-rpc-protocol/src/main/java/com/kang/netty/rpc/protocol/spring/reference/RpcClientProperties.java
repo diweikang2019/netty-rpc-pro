@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2022/5/14 0:06
  */
 @Data
-//@ConfigurationProperties(prefix = "netty.rpc")
+// @ConfigurationProperties(prefix = "netty.rpc")
 public class RpcClientProperties {
 
     private String serviceAddress;
